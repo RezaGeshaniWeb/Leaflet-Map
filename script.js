@@ -2,30 +2,16 @@ const map = L.map("map").setView([35.70015230480259, 51.33811941768732], 15);
 
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(map);
 
-map.on("click", (e) => {
-  const lat = e.latlng.lat;
-  const lng = e.latlng.lng;
-  console.log(`latlng: ${lat} , ${lng}`);
+// project-osrm.org
 
-  const marker1 = L.marker(e.latlng, { draggable: true })
-    .bindPopup(`latlng: ${lat} , ${lng}`)
-    .addTo(map);
+const point1 = [35.704065544779105, 51.10967164109585];
+const point2 = [35.707550374942485, 51.22794632644294];
 
-  marker1.on("dragstart", (e) => {
-    console.log("start");
-  });
+const marker1 = L.marker(point1).addTo(map);
+const marker2 = L.marker(point2).addTo(map);
 
-  marker1.on("dragend", (e) => {
-    console.log("end");
-  });
-});
+const url = `http://router.project-osrm.org/route/v1/driving/${point1[1]},${point1[0]};${point2[1], point2[0]}?overview=false`;
 
-map.on("zoomend", (e) => {
-  console.log("zoom : ", map.getZoom());
-});
-
-map.on("moveend", (e) => {
-  console.log("move : ", map.getCenter());
-});
-
-map.panTo([35.744122865962225, 51.14135870933576]);
+fetch(url)
+  .then((res) => res.json())
+  .then((data) => console.log(data));
