@@ -26,7 +26,7 @@ map.on('click', e => {
       <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
     </svg>
   `
-  
+
   const markerIcon = L.divIcon({
     html: svgIcon,
     className: 'custom-svg-icon',
@@ -57,7 +57,7 @@ map.on('click', e => {
         }]
       }
     }).addTo(map);
-    
+
     // information about route
     control.on('routesfound', e => {
       let summary = e.routes[0].summary
@@ -99,3 +99,11 @@ const geocoder = L.Control.geocoder({
   L.marker(e.geocode.center).addTo(map).bindPopup(e.geocode.name).openPopup()
 })
   .addTo(map)
+
+
+////////////////////////////////
+
+
+const map2 = L.map("map2").setView([35.70015230480259, 51.33811941768732], 15);
+
+L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(map2);

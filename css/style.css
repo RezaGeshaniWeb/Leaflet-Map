@@ -1,6 +1,7 @@
-#map {
-    width: 800px;
-    height: 600px;
+#map,
+#map2 {
+    width: 700px;
+    height: 500px;
 }
 
 /* hidden info box */
