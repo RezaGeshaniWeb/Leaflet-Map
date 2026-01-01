@@ -19,12 +19,20 @@ map.on('click', e => {
     }
   }
 
-  // add two markers
-  const markerIcon = L.icon({
-    iconUrl: markers.length === 0 ? 'img/shop-icon1.png' : 'img/shop-icon2.png',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
+  // add two markers with SVG icon
+  const iconColor = markers.length === 0 ? '#28a745' : '#dc3545'
+  const svgIcon = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="${iconColor}" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+      <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
+    </svg>
+  `
+  
+  const markerIcon = L.divIcon({
+    html: svgIcon,
+    className: 'custom-svg-icon',
+    iconSize: [24, 24],
+    iconAnchor: [12, 24],
+    popupAnchor: [0, -24],
   })
   const marker = L.marker(e.latlng, { icon: markerIcon }).addTo(map)
   markers.push(marker)
@@ -42,7 +50,6 @@ map.on('click', e => {
       ],
       createMarker: () => null,
       show: false,
-      collapsible: false,
       lineOptions: {
         styles: [{
           color: 'blue',
@@ -60,7 +67,7 @@ map.on('click', e => {
 
       let time = Math.round(summary.totalTime / 60)
 
-      const perMeter = 500
+      const perMeter = 50
       const totalMoney = Math.round(Math.round(distance) * perMeter)
 
       L.popup().setLatLng(markers[1].getLatLng()).setContent(`
@@ -74,7 +81,6 @@ map.on('click', e => {
     })
   }
 })
-
 
 
 // search box

@@ -3,15 +3,7 @@
     height: 600px;
 }
 
-/* مخفی کردن باکس اطلاعات مسیر در سمت راست */
+/* hidden info box */
 .leaflet-routing-container {
-    display: none !important;
-}
-
-.leaflet-routing-alt {
-    display: none !important;
-}
-
-.leaflet-routing-collapse-btn {
     display: none !important;
 }
