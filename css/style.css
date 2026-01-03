@@ -1,5 +1,4 @@
-#map,
-#map2 {
+#map {
     width: 700px;
     height: 500px;
 }
@@ -7,4 +6,19 @@
 /* hidden info box */
 .leaflet-routing-container {
     display: none !important;
+}
+
+.weather {
+    display: flex;
+
+    >div {
+        width: 70%;
+        height: 100vh;
+    }
+
+    >aside {
+        width: 30%;
+        height: 100vh;
+        overflow-y: auto;
+    }
 }
